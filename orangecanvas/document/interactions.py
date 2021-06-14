@@ -450,8 +450,8 @@ class NewLinkAction(UserInteraction):
             event.accept()
 
             helpevent = QuickHelpTipEvent(
-                self.tr("Create a new link"),
-                self.tr('<h3>Create new link</h3>'
+                _("Create a new link"),
+                _('<h3>Create new link</h3>'
                         '<p>Drag a link to an existing node or release on '
                         'an empty spot to create a new node.</p>'
                         '<p>Hold Shift when releasing the mouse button to '
@@ -582,7 +582,7 @@ class NewLinkAction(UserInteraction):
             node = None  # type: Optional[Node]
             stack = self.document.undoStack()
 
-            self.macro = UndoCommand(self.tr("Add link"))
+            self.macro = UndoCommand(_("Add link"))
 
             if item:
                 # If the release was over a node item then connect them
@@ -1335,8 +1335,8 @@ class NewArrowAnnotation(UserInteraction):
         self.document.view().setCursor(Qt.CrossCursor)
 
         helpevent = QuickHelpTipEvent(
-            self.tr("Click and drag to create a new arrow"),
-            self.tr('<h3>New arrow annotation</h3>'
+            _("Click and drag to create a new arrow"),
+            _('<h3>New arrow annotation</h3>'
                     '<p>Click and drag to create a new arrow annotation</p>'
 #                    '<a href="help://orange-canvas/arrow-annotations>'
 #                    'More ...</a>'
@@ -1460,8 +1460,8 @@ class NewTextAnnotation(UserInteraction):
         self.document.view().setCursor(Qt.CrossCursor)
 
         helpevent = QuickHelpTipEvent(
-            self.tr("Click to create a new text annotation"),
-            self.tr('<h3>New text annotation</h3>'
+            _("Click to create a new text annotation"),
+            _('<h3>New text annotation</h3>'
                     '<p>Click (and drag to resize) on the canvas to create '
                     'a new text annotation item.</p>'
 #                    '<a href="help://orange-canvas/text-annotations">'

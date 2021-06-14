@@ -36,18 +36,18 @@ class CanvasView(QGraphicsView):
         self.__effectiveZoomLevel = 100
 
         self.__zoomInAction = QAction(
-            self.tr("Zoom in"), self, objectName="action-zoom-in",
+            _("Zoom in"), self, objectName="action-zoom-in",
             shortcut=QKeySequence.ZoomIn,
             triggered=self.zoomIn,
         )
 
         self.__zoomOutAction = QAction(
-            self.tr("Zoom out"), self, objectName="action-zoom-out",
+            _("Zoom out"), self, objectName="action-zoom-out",
             shortcut=QKeySequence.ZoomOut,
             triggered=self.zoomOut
         )
         self.__zoomResetAction = QAction(
-            self.tr("Reset Zoom"), self, objectName="action-zoom-reset",
+            _("Reset Zoom"), self, objectName="action-zoom-reset",
             triggered=self.zoomReset,
             shortcut=QKeySequence(Qt.ControlModifier | Qt.Key_0)
         )

@@ -77,7 +77,7 @@ class EditLinksDialog(QDialog):
                                    Qt.Horizontal)
 
         clear_button = buttons.button(QDialogButtonBox.Reset)
-        clear_button.setText(self.tr("Clear All"))
+        clear_button.setText(_("Clear All"))
 
         buttons.accepted.connect(self.accept)
         buttons.rejected.connect(self.reject)

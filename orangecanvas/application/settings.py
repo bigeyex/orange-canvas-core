@@ -267,9 +267,12 @@ class UserSettingsDialog(QMainWindow):
         self.stack = central
 
         # General Tab
+        import gettext
+        translation = gettext.translation('messages', 'locale', languages=['zh_CN'])
+        _ = translation.gettext
         tab = QWidget()
-        self.addTab(tab, self.tr("General"),
-                    toolTip=self.tr("General Options"))
+        self.addTab(tab, _("General"),
+                    toolTip=_("General Options"))
 
         form = FormLayout()
         tab.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -279,24 +282,24 @@ class UserSettingsDialog(QMainWindow):
         nodes.layout().setContentsMargins(0, 0, 0, 0)
 
         cb_anim = QCheckBox(
-            self.tr("Enable node animations"),
+            _("Enable node animations"),
             objectName="enable-node-animations",
-            toolTip=self.tr("Enable shadow and ping animations for nodes "
+            toolTip=_("Enable shadow and ping animations for nodes "
                             "in the workflow.")
         )
         self.bind(cb_anim, "checked", "schemeedit/enable-node-animations")
         nodes.layout().addWidget(cb_anim)
 
-        form.addRow(self.tr("Nodes"), nodes)
+        form.addRow(_("Nodes"), nodes)
 
         links = QWidget(self, objectName="links")
         links.setLayout(QVBoxLayout())
         links.layout().setContentsMargins(0, 0, 0, 0)
 
         cb_show = QCheckBox(
-            self.tr("Show channel names between widgets"),
+            _("Show channel names between widgets"),
             objectName="show-channel-names",
-            toolTip=self.tr("Show source and sink channel names "
+            toolTip=_("Show source and sink channel names "
                             "over the links.")
         )
 
@@ -304,30 +307,30 @@ class UserSettingsDialog(QMainWindow):
 
         links.layout().addWidget(cb_show)
 
-        form.addRow(self.tr("Links"), links)
+        form.addRow(_("Links"), links)
 
         quickmenu = QWidget(self, objectName="quickmenu-options")
         quickmenu.setLayout(QVBoxLayout())
         quickmenu.layout().setContentsMargins(0, 0, 0, 0)
 
-        cb1 = QCheckBox(self.tr("Open on double click"),
-                        toolTip=self.tr("Open quick menu on a double click "
+        cb1 = QCheckBox(_("Open on double click"),
+                        toolTip=_("Open quick menu on a double click "
                                         "on an empty spot in the canvas"))
 
-        cb2 = QCheckBox(self.tr("Open on right click"),
-                        toolTip=self.tr("Open quick menu on a right click "
+        cb2 = QCheckBox(_("Open on right click"),
+                        toolTip=_("Open quick menu on a right click "
                                         "on an empty spot in the canvas"))
 
-        cb3 = QCheckBox(self.tr("Open on space key press"),
-                        toolTip=self.tr("Open quick menu on Space key press "
+        cb3 = QCheckBox(_("Open on space key press"),
+                        toolTip=_("Open quick menu on Space key press "
                                         "while the mouse is hovering over the canvas."))
 
-        cb4 = QCheckBox(self.tr("Open on any key press"),
-                        toolTip=self.tr("Open quick menu on any key press "
+        cb4 = QCheckBox(_("Open on any key press"),
+                        toolTip=_("Open quick menu on any key press "
                                         "while the mouse is hovering over the canvas."))
 
-        cb5 = QCheckBox(self.tr("Show categories"),
-                        toolTip=self.tr("In addition to searching, allow filtering "
+        cb5 = QCheckBox(_("Show categories"),
+                        toolTip=_("In addition to searching, allow filtering "
                                         "by categories."))
 
         self.bind(cb1, "checked", "quickmenu/trigger-on-double-click")
@@ -342,19 +345,19 @@ class UserSettingsDialog(QMainWindow):
         quickmenu.layout().addWidget(cb4)
         quickmenu.layout().addWidget(cb5)
 
-        form.addRow(self.tr("Quick menu"), quickmenu)
+        form.addRow(_("Quick menu"), quickmenu)
 
         startup = QWidget(self, objectName="startup-group")
         startup.setLayout(QVBoxLayout())
         startup.layout().setContentsMargins(0, 0, 0, 0)
 
-        cb_splash = QCheckBox(self.tr("Show splash screen"), self,
+        cb_splash = QCheckBox(_("Show splash screen"), self,
                               objectName="show-splash-screen")
 
-        cb_welcome = QCheckBox(self.tr("Show welcome screen"), self,
+        cb_welcome = QCheckBox(_("Show welcome screen"), self,
                                objectName="show-welcome-screen")
 
-        cb_crash = QCheckBox(self.tr("Load crashed scratch workflows"), self,
+        cb_crash = QCheckBox(_("Load crashed scratch workflows"), self,
                              objectName="load-crashed-workflows")
 
         self.bind(cb_splash, "checked", "startup/show-splash-screen")
@@ -365,52 +368,52 @@ class UserSettingsDialog(QMainWindow):
         startup.layout().addWidget(cb_welcome)
         startup.layout().addWidget(cb_crash)
 
-        form.addRow(self.tr("On startup"), startup)
+        form.addRow(_("On startup"), startup)
 
         toolbox = QWidget(self, objectName="toolbox-group")
         toolbox.setLayout(QVBoxLayout())
         toolbox.layout().setContentsMargins(0, 0, 0, 0)
 
-        exclusive = QCheckBox(self.tr("Only one tab can be open at a time"))
+        exclusive = QCheckBox(_("Only one tab can be open at a time"))
 
         self.bind(exclusive, "checked", "mainwindow/toolbox-dock-exclusive")
 
         toolbox.layout().addWidget(exclusive)
 
-        form.addRow(self.tr("Tool box"), toolbox)
+        form.addRow(_("Tool box"), toolbox)
         tab.setLayout(form)
 
         # Style tab
         tab = StyleConfigWidget()
-        self.addTab(tab, self.tr("&Style"), toolTip="Application style")
+        self.addTab(tab, _("&Style"), toolTip="Application style")
         self.bind(tab, "selectedStyle_", "application-style/style-name")
         self.bind(tab, "selectedPalette_", "application-style/palette")
 
         # Output Tab
         tab = QWidget()
-        self.addTab(tab, self.tr("Output"),
+        self.addTab(tab, _("Output"),
                     toolTip="Output Redirection")
 
         form = FormLayout()
 
         combo = QComboBox()
-        combo.addItems([self.tr("Critical"),
-                        self.tr("Error"),
-                        self.tr("Warn"),
-                        self.tr("Info"),
-                        self.tr("Debug")])
+        combo.addItems([_("Critical"),
+                        _("Error"),
+                        _("Warn"),
+                        _("Info"),
+                        _("Debug")])
         self.bind(combo, "currentIndex", "logging/level")
-        form.addRow(self.tr("Logging"), combo)
+        form.addRow(_("Logging"), combo)
 
         box = QWidget()
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
-        cb1 = QCheckBox(self.tr("Open in external browser"),
+        cb1 = QCheckBox(_("Open in external browser"),
                         objectName="open-in-external-browser")
         self.bind(cb1, "checked", "help/open-in-external-browser")
         layout.addWidget(cb1)
         box.setLayout(layout)
-        form.addRow(self.tr("Help window"), box)
+        form.addRow(_("Help window"), box)
 
         tab.setLayout(form)
 
@@ -444,11 +447,12 @@ class UserSettingsDialog(QMainWindow):
                 )
         )
 
+        _ = translation.gettext
         self.addTab(tab, "Categories")
 
         # Add-ons Tab
         tab = QWidget()
-        self.addTab(tab, self.tr("Add-ons"),
+        self.addTab(tab, _("Add-ons"),
                     toolTip="Settings related to add-on installation")
 
         form = FormLayout()
@@ -456,14 +460,14 @@ class UserSettingsDialog(QMainWindow):
         conda.setLayout(QVBoxLayout())
         conda.layout().setContentsMargins(0, 0, 0, 0)
 
-        cb_conda_install = QCheckBox(self.tr("Install add-ons with conda"), self,
+        cb_conda_install = QCheckBox(_("Install add-ons with conda"), self,
                                      objectName="allow-conda")
         self.bind(cb_conda_install, "checked", "add-ons/allow-conda")
         conda.layout().addWidget(cb_conda_install)
 
-        form.addRow(self.tr("Conda"), conda)
+        form.addRow(_("Conda"), conda)
 
-        form.addRow(self.tr("Pip"), QLabel("Pip install arguments:"))
+        form.addRow(_("Pip"), QLabel("Pip install arguments:"))
         line_edit_pip = QLineEdit()
         self.bind(line_edit_pip, "text", "add-ons/pip-install-arguments")
         form.addRow("", line_edit_pip)
@@ -472,7 +476,7 @@ class UserSettingsDialog(QMainWindow):
 
         # Network Tab
         tab = QWidget()
-        self.addTab(tab, self.tr("Network"),
+        self.addTab(tab, _("Network"),
                     toolTip="Settings related to networking")
 
         form = FormLayout()

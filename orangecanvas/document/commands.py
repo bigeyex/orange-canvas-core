@@ -82,7 +82,7 @@ class UndoCommand(QUndoCommand):
 class AddNodeCommand(UndoCommand):
     def __init__(self, scheme, node, parent=None):
         # type: (Scheme, SchemeNode, Optional[UndoCommand]) -> None
-        super().__init__("Add %s" % node.title, parent)
+        super().__init__(_("Add %s") % node.title, parent)
         self.scheme = scheme
         self.node = node
 
@@ -96,7 +96,7 @@ class AddNodeCommand(UndoCommand):
 class RemoveNodeCommand(UndoCommand):
     def __init__(self, scheme, node, parent=None):
         # type: (Scheme, SchemeNode, Optional[UndoCommand]) -> None
-        super().__init__("Remove %s" % node.title, parent)
+        super().__init__(_("Remove %s") % node.title, parent)
         self.scheme = scheme
         self.node = node
         self._index = -1
@@ -122,7 +122,7 @@ class RemoveNodeCommand(UndoCommand):
 class AddLinkCommand(UndoCommand):
     def __init__(self, scheme, link, parent=None):
         # type: (Scheme, SchemeLink, Optional[UndoCommand]) -> None
-        super().__init__("Add link", parent)
+        super().__init__(_("Add link"), parent)
         self.scheme = scheme
         self.link = link
 
@@ -136,7 +136,7 @@ class AddLinkCommand(UndoCommand):
 class RemoveLinkCommand(UndoCommand):
     def __init__(self, scheme, link, parent=None):
         # type: (Scheme, SchemeLink, Optional[UndoCommand]) -> None
-        super().__init__("Remove link", parent)
+        super().__init__(_("Remove link"), parent)
         self.scheme = scheme
         self.link = link
         self._index = -1
@@ -160,7 +160,7 @@ class InsertNodeCommand(UndoCommand):
             new_links,  # type: Tuple[SchemeLink, SchemeLink]
             parent=None # type: Optional[UndoCommand]
     ):  # type: (...) -> None
-        super().__init__("Insert widget into link", parent)
+        super().__init__(_("Insert widget into link"), parent)
 
         AddNodeCommand(scheme, new_node, parent=self)
         RemoveLinkCommand(scheme, old_link, parent=self)
@@ -171,7 +171,7 @@ class InsertNodeCommand(UndoCommand):
 class AddAnnotationCommand(UndoCommand):
     def __init__(self, scheme, annotation, parent=None):
         # type: (Scheme, BaseSchemeAnnotation, Optional[UndoCommand]) -> None
-        super().__init__("Add annotation", parent)
+        super().__init__(_("Add annotation"), parent)
         self.scheme = scheme
         self.annotation = annotation
 
@@ -185,7 +185,7 @@ class AddAnnotationCommand(UndoCommand):
 class RemoveAnnotationCommand(UndoCommand):
     def __init__(self, scheme, annotation, parent=None):
         # type: (Scheme, BaseSchemeAnnotation, Optional[UndoCommand]) -> None
-        super().__init__("Remove annotation", parent)
+        super().__init__(_("Remove annotation"), parent)
         self.scheme = scheme
         self.annotation = annotation
         self._index = -1
@@ -203,7 +203,7 @@ class RemoveAnnotationCommand(UndoCommand):
 class MoveNodeCommand(UndoCommand):
     def __init__(self, scheme, node, old, new, parent=None):
         # type: (Scheme, SchemeNode, Pos, Pos, Optional[UndoCommand]) -> None
-        super().__init__("Move", parent)
+        super().__init__(_("Move"), parent)
         self.scheme = scheme
         self.node = node
         self.old = old
@@ -219,7 +219,7 @@ class MoveNodeCommand(UndoCommand):
 class ResizeCommand(UndoCommand):
     def __init__(self, scheme, item, new_geom, parent=None):
         # type: (Scheme, SchemeTextAnnotation, Rect, Optional[UndoCommand]) -> None
-        super().__init__("Resize", parent)
+        super().__init__(_("Resize"), parent)
         self.scheme = scheme
         self.item = item
         self.new_geom = new_geom
@@ -235,7 +235,7 @@ class ResizeCommand(UndoCommand):
 class ArrowChangeCommand(UndoCommand):
     def __init__(self, scheme, item, new_line, parent=None):
         # type: (Scheme, SchemeArrowAnnotation, Line, Optional[UndoCommand]) -> None
-        super().__init__("Move arrow", parent)
+        super().__init__(_("Move arrow"), parent)
         self.scheme = scheme
         self.item = item
         self.new_line = new_line
@@ -257,7 +257,7 @@ class AnnotationGeometryChange(UndoCommand):
             new,  # type: Any
             parent=None  # type: Optional[UndoCommand]
     ):  # type: (...) -> None
-        super().__init__("Change Annotation Geometry", parent)
+        super().__init__(_("Change Annotation Geometry"), parent)
         self.scheme = scheme
         self.annotation = annotation
         self.old = old
@@ -273,7 +273,7 @@ class AnnotationGeometryChange(UndoCommand):
 class RenameNodeCommand(UndoCommand):
     def __init__(self, scheme, node, old_name, new_name, parent=None):
         # type: (Scheme, SchemeNode, str, str, Optional[UndoCommand]) -> None
-        super().__init__("Rename", parent)
+        super().__init__(_("Rename"), parent)
         self.scheme = scheme
         self.node = node
         self.old_name = old_name
@@ -297,7 +297,7 @@ class TextChangeCommand(UndoCommand):
             new_content_type,  # type: str
             parent=None   # type: Optional[UndoCommand]
     ):  # type: (...) -> None
-        super().__init__("Change text", parent)
+        super().__init__(_("Change text"), parent)
         self.scheme = scheme
         self.annotation = annotation
         self.old_content = old_content
@@ -322,7 +322,7 @@ class SetAttrCommand(UndoCommand):
             parent=None  # type: Optional[UndoCommand]
     ):  # type: (...) -> None
         if name is None:
-            name = "Set %r" % attrname
+            name = _("Set %r") % attrname
         super().__init__(name, parent)
         self.obj = obj
         self.attrname = attrname
@@ -344,7 +344,7 @@ class SetWindowGroupPresets(UndoCommand):
             parent: Optional[UndoCommand] = None,
             **kwargs
     ) -> None:
-        text = kwargs.pop("text", "Set Window Presets")
+        text = kwargs.pop("text", _("Set Window Presets"))
         super().__init__(text, parent, **kwargs)
         self.scheme = scheme
         self.presets = presets

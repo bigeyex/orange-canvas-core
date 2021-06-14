@@ -32,7 +32,7 @@ class PreviewDialog(QDialog):
         self.setContentsMargins(0, 0, 0, 0)
 
         self.__browser = previewbrowser.PreviewBrowser(
-            self, heading="<h3>{0}</h3>".format(self.tr("Preview"))
+            self, heading="<h3>{0}</h3>".format(_("Preview"))
         )
         self.__buttons = QDialogButtonBox(QDialogButtonBox.Open |
                                           QDialogButtonBox.Cancel,

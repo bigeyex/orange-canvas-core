@@ -128,7 +128,7 @@ class TextAnnotation(Annotation):
             self, editTriggers=GraphicsTextEdit.NoEditTriggers
         )
         self.__textItem.setOpenExternalLinks(True)
-        self.__textItem.setPlaceholderText(self.tr("Enter text here"))
+        self.__textItem.setPlaceholderText(_("Enter text here"))
         self.__textItem.setPos(2, 2)
         self.__textItem.setTextWidth(rect.width() - 4)
         self.__textItem.setTabChangesFocus(True)
@@ -412,17 +412,17 @@ class TextAnnotation(Annotation):
 
         formatactions = [
             makeaction("Plain Text", group, checkable=True,
-                       toolTip=self.tr("Render contents as plain text"),
+                       toolTip=_("Render contents as plain text"),
                        data="text/plain"),
             makeaction("HTML", group, checkable=True,
-                       toolTip=self.tr("Render contents as HTML"),
+                       toolTip=_("Render contents as HTML"),
                        data="text/html"),
             makeaction("RST", group, checkable=True,
-                       toolTip=self.tr("Render contents as RST "
+                       toolTip=_("Render contents as RST "
                                        "(reStructuredText)"),
                        data="text/rst"),
             makeaction("Markdown", group, checkable=True,
-                       toolTip=self.tr("Render contents as Markdown"),
+                       toolTip=_("Render contents as Markdown"),
                        data="text/markdown")
         ]
         for action in formatactions:

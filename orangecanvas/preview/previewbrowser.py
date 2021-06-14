@@ -89,7 +89,7 @@ class PreviewBrowser(QWidget):
         # Path text below the description and image
         path_layout = QHBoxLayout()
         path_layout.setContentsMargins(0, 0, 0, 0)
-        path_label = QLabel("<b>{0!s}</b>".format(self.tr("Path:")), self,
+        path_label = QLabel("<b>{0!s}</b>".format(_("Path:")), self,
                             objectName="path-label")
         self.__path = TextLabel(self, objectName="path-text")
 

@@ -1232,7 +1232,7 @@ class QuickMenu(FramelessWindow):
 
         self.__search = SearchWidget(self, objectName="search-line")
         self.__search.setPlaceholderText(
-            self.tr("Search for a widget...")
+            _("Search for a widget...")
         )
         self.__search.setChecked(True)
 
@@ -1269,7 +1269,7 @@ class QuickMenu(FramelessWindow):
             # Don't show the focus frame because it expands into the tab bar.
             view.setAttribute(Qt.WA_MacShowFocusRect, False)
 
-        i = self.addPage(self.tr("Quick Search"), self.__suggestPage)
+        i = self.addPage(_("Quick Search"), self.__suggestPage)
         button = self.__pages.tabButton(i)
         button.setVisible(False)
 

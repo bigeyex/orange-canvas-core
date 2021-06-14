@@ -330,7 +330,7 @@ class PluginsModel(QStandardItemModel):
     def __init__(self, parent=None, **kwargs):
         super().__init__(parent, **kwargs)
         self.setHorizontalHeaderLabels(
-            ["", self.tr("Name"), self.tr("Version"), self.tr("Action")]
+            ["", _("Name"), _("Version"), _("Action")]
         )
 
     @staticmethod
@@ -542,11 +542,11 @@ class AddonManagerDialog(QDialog):
 
         self.__search = QLineEdit(
             objectName="filter-edit",
-            placeholderText=self.tr("Filter...")
+            placeholderText=_("Filter...")
         )
         self.__addmore = QPushButton(
-            self.tr("Add more..."),
-            toolTip=self.tr("Add an add-on not listed below"),
+            _("Add more..."),
+            toolTip=_("Add an add-on not listed below"),
             autoDefault=False
         )
         self.__view = view = QTreeView(
@@ -689,7 +689,7 @@ class AddonManagerDialog(QDialog):
         self.show()
         progress.show()
         progress.setLabelText(
-            self.tr("Retrieving package list")
+            _("Retrieving package list")
         )
         self.__f_pypi_addons = self.__executor.submit(
             lambda config=config: (config, list_available_versions(config)),
@@ -963,7 +963,7 @@ class AddonManagerDialog(QDialog):
             self.__progress = QProgressDialog(
                 self,
                 minimum=0, maximum=0,
-                labelText=self.tr("Retrieving package list"),
+                labelText=_("Retrieving package list"),
                 sizeGripEnabled=False,
                 windowTitle="Progress"
             )
