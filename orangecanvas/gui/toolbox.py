@@ -510,7 +510,8 @@ class ToolBox(QFrame):
         """
         Create the tab button for `widget`.
         """
-        action = QAction(text, self)
+        (_('Data'), _('Visualize'), _('Model'), _('Evaluate'), _('Unsupervised'))
+        action = QAction(_(text), self)
         action.setCheckable(True)
 
         if icon:

@@ -80,7 +80,7 @@ WidgetToolBox ToolGrid QToolButton[last-column] {
 }
 
 WidgetToolBox ToolGrid QToolButton {
-    font-size: 10px;
+    font-size: 12px;
 }
 WidgetToolBox ToolGrid QToolButton:focus {
     background-color: palette(window);
